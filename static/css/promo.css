@@ -1,0 +1,86 @@
+/* Promotional Product Section */
+.promo-product-section {
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+.promo-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 500px;
+}
+
+.promo-image-col {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.promo-image-col .full-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.promo-content-col {
+    flex: 1;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.promo-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--dark);
+}
+
+.price-highlight {
+    color: var(--primary-color);
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.promo-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--dark);
+}
+
+.contact-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Responsive styles for the promo section */
+@media (max-width: 992px) {
+    .promo-container {
+        flex-direction: column;
+    }
+    
+    .promo-image-col, .promo-content-col {
+        flex: none;
+        width: 100%;
+    }
+    
+    .promo-image-col {
+        height: 300px;
+    }
+    
+    .promo-content-col {
+        padding: 2rem;
+    }
+}

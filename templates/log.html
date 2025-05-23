@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EdixMatic - Solution pour la gestion des défibrillateurs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Custom font specified in requirements -->
+  <link rel="stylesheet" href="https://cdn.glitch.global/4d7db198-d06b-43a0-a17b-b43d16d2bbce/SaaSduo%20more?v=1692822723823">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7dad5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .login-container {
+      width: 93%;
+      max-width: 400px;
+      text-align: center;
+
+      margin-bottom: 1.5rem;
+      border-radius: 15px;
+      padding: 25px;
+      border: none;
+      background-color: #ffffff;
+      box-shadow: rgb(0 0 0 / 2%) 0px 0px 30px 15px;
+      
+    }
+
+    .login-container h2 {
+      margin-bottom: 30px;
+      font-weight: 100;
+      color: #000;
+      margin-top: 18px;
+      font-size: 36px;
+      font-family: 'CoffeeORIGIN';
+      cursor: default;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      background: transparent;
+      color: #000;
+      padding: 0.75rem;
+      border: 2px solid #e4e4e4;
+      border-radius: 13px;
+      font-size: 16px;
+      outline: none !important;
+      height: 52px;
+      text-align: center;
+    }
+
+
+    input[type="email"]:hover {
+      color: #ff4d00;
+      border: 2px solid #ff4d00;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      color: white;
+      cursor: pointer;
+
+      margin-top: 20px;
+      background-color: #ff4d00;
+      border-radius: 14px;
+      padding-top: 17px !important;
+      padding-bottom: 16px !important;
+      font-size: 18px;
+      color: white;
+      transition-duration: 0s;
+      transition: none;
+    }
+
+    button:hover {
+          box-shadow: 0 0 0px 7px #ff4d0026;
+          cursor: pointer !important;
+          transition-duration: 0s !important;
+          transform: none !important;
+      
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+
+    .open-btn {
+      margin-top: 12px;
+      background: #2b179c;
+    }
+
+    .open-btn:hover {
+        box-shadow: 0 0 0px 7px #2b179c2b !important;
+        cursor: pointer !important;
+        transition-duration: 0s !important;
+        transform: none !important;
+        color: #fff !important;
+    }
+
+    .loader {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #f7dad5;
+      border-top: 2px solid #ff4d00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .support {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    .support a {
+      color: #ff4d00;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .support a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Connexion</h2>
+    <input type="email" id="emailInput" placeholder="Entrez votre identifiant" required />
+    <button onclick="handleLogin()">Connexion</button>
+    <div id="feedback" class="message"></div>
+    <div id="openLinkContainer"></div>
+    <div class="support"><a href="mailto:support@defibeo.com">Assistance</a></div>
+  </div>
+
+  <script>
+    const validEmails = {
+      "882-xkz-993": "https://882XKZ993.defibeo.com/",
+      "116-lls-993": "https://116LLS993.defibeo.com/",
+      "661-wgq-090": "https://661WGQ090.defibeo.com/"
+
+            };
+
+    function handleLogin() {
+      const email = document.getElementById('emailInput').value.trim().toLowerCase();
+      const feedback = document.getElementById('feedback');
+      const openLinkContainer = document.getElementById('openLinkContainer');
+
+      feedback.innerHTML = '<div class="loader"></div>';
+      openLinkContainer.innerHTML = '';
+
+      setTimeout(() => {
+        if (validEmails[email]) {
+          feedback.textContent = 'Veuillez utiliser la connexion personnalisée pour votre logiciel.';
+          openLinkContainer.innerHTML = `
+            <button class="open-btn" onclick="window.location.href='${validEmails[email]}'">Ouvrir</button>
+          `;
+        } else {
+          feedback.textContent = "Impossible de localiser le compte, si vous venez de créer votre compte, veuillez patienter quelques instants.";
+        }
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
